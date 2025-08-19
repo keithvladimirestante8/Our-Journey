@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Journey</title>
+
+  <!-- ===== GOOGLE FONTS ===== -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <!-- ===== CSS START ===== -->
+  <style>
+    :root {
+      --primary: #ff6b95;
+      --secondary: #ffc3a0;
+      --text-dark: #2c2c2c;
+      --shadow: 0 6px 20px rgba(0,0,0,0.15);
+    }
+
+    /* Background gradient animation */
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(-45deg, var(--primary), var(--secondary), #fceabb, #f8b195);
+      background-size: 400% 400%;
+      animation: gradientBG 12s ease infinite;
+      color: var(--text-dark);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
+
+    @keyframes gradientBG {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Floating flowers container */
+    .floating-container {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      overflow: hidden;
+      z-index: 1;
+    }
+
+    .heart {
+      position: absolute;
+      font-size: 20px;
+      animation: floatUp 8s linear forwards;
+      opacity: 0.7;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(100vh) translateX(0) scale(0.8);
+        opacity: 0;
+      }
+      20% { opacity: 1; }
+      50% { transform: translateY(50vh) translateX(-30px) scale(1); }
+      80% { transform: translateY(20vh) translateX(30px) scale(1.1); }
+      100% {
+        transform: translateY(-10vh) translateX(0) scale(1.2);
+        opacity: 0;
+      }
+    }
+
+    /* Header */
+    header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(255, 255, 255, 0.85);
+      backdrop-filter: blur(6px);
+      padding: 15px 40px;
+      font-weight: 600;
+      box-shadow: var(--shadow);
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'Dancing Script', cursive;
+      font-size: 1.5rem;
+    }
+
+    header span {
+      color: var(--primary);
+    }
+
+    /* Sections */
+    section {
+      min-height:10vh; /* bawas height */
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      padding: 90px 20px 60px; /* mas maliit na spacing */
+      text-align: center;
+      position: relative;
+      z-index: 5;
+    }
+
+    section h1, section h2 {
+      font-family: 'Dancing Script', cursive;
+      color: var(--primary);
+    }
+
+    /* MAIN NAMES with gradient + shimmer + sweep */
+    .names {
+      position: relative;
+      font-size: 4.2rem;
+      margin-bottom: 15px;
+      font-family: 'Dancing Script', cursive;
+      background: linear-gradient(90deg, #ff758c, #ff7eb3, #ff758c);
+      background-size: 200% auto;
+      color: #fff;
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      text-shadow: 2px 4px 10px rgba(0,0,0,0.3);
+      animation: shimmer 5s linear infinite;
+      overflow: hidden;
+    }
+
+    .names::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -50%;
+      width: 50%;
+      height: 100%;
+      background: linear-gradient(120deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 80%);
+      transform: skewX(-20deg);
+      animation: lightSweep 4s ease-in-out infinite;
+    }
+
+    @keyframes shimmer {
+      0% { background-position: 200% center; }
+      100% { background-position: -200% center; }
+    }
+
+    @keyframes lightSweep {
+      0% { left: -60%; }
+      50% { left: 120%; }
+      100% { left: -60%; }
+    }
+
+    section h1 {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+    }
+
+    section h2 {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    section p {
+      max-width: 750px;
+      font-size: 1.1rem;
+      margin-bottom: 15px;
+      font-weight: 300;
+    }
+
+    /* Picture frame styling */
+    section img {
+      max-width: 320px;
+      width: 100%;
+      height: auto;
+      margin-top: 20px;
+      display: block;
+      border: 6px solid rgba(255, 255, 255, 0.85);
+      border-radius: 16px;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.25);
+      transition: transform 0.5s ease, box-shadow 0.5s ease;
+    }
+
+    section img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 18px 38px rgba(0, 0, 0, 0.35);
+    }
+
+    .hero p {
+      font-size: 1.3rem;
+      font-weight: 400;
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(to top, rgba(255,255,255,0.9), rgba(255,255,255,0.7));
+      text-align: center;
+      padding: 30px 20px;
+      font-size: 1rem;
+      color: #444;
+      font-weight: 400;
+      font-family: 'Poppins', sans-serif;
+      position: relative;
+      z-index: 5;
+    }
+
+    /* Reveal animation */
+    .reveal {
+      opacity: 0;
+      transform: translateY(80px) scale(0.95);
+      transition: all 1.2s cubic-bezier(.25,.8,.25,1);
+    }
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .small-photo{
+        max-width: 200px;
+        border: 4px solid rgba (255, 255, 255, 0.9);
+        border-radius: 14px;
+        box-shadow: 0 8px 22px rgba(0, 0, 0, 0.25);
+    }
+  </style>
+  <!-- ===== CSS END ===== -->
+</head>
+<body>
+
+  <!-- Floating motion layer -->
+  <div class="floating-container"></div>
+
+  <!-- Header -->
+  <header>
+    <div>Our Journey</div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <h1 class="names">Vladimir & Giselle</h1>
+    <h1>Our 4-Year Journey</h1>
+    <p>From strangers, to friends, to lovers.</p>
+    <img src="first_photo.jpg" alt="Our First Photo">
+  </section>
+
+  <!-- Courtship -->
+  <section class="reveal">
+    <h2>Courtship • Almost 1 Year</h2>
+    <p>Late-night talks, little surprises, and endless prayers.</p>
+  </section>
+
+  <!-- Year 1 -->
+  <section class="reveal">
+    <h2>Year 1 • Officially Us</h2>
+    <p>Our firsts together — laughs, tears, and little fights — they made us stronger.</p>
+  </section>
+
+  <!-- Year 2 -->
+  <section class="reveal">
+    <h2>Year 2 • Growing Stronger</h2>
+    <p>Challenges came, but with love, forgiveness, and patience, we kept going.</p>
+  </section>
+
+  <!-- Year 3 -->
+  <section class="reveal">
+    <h2>Year 3 • Still Falling</h2>
+    <p>Three years of love, laughter, and countless memories.</p>
+  </section>
+
+  <!-- Last Highlight with Picture -->
+  <section class="reveal">
+    <h2>Forever</h2>
+    <p>Through all the years, you are my greatest blessing.</p>
+    <img src="second_picture.jpg" alt="Our Special Moment" class="small-photo">
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    Forever Yours, <br>Keith Vladimir Enorio Estante</br>
+  </footer>
+
+  <!-- ===== JAVASCRIPT START ===== -->
+  <script>
+    // Reveal on scroll
+    function revealOnScroll() {
+      const reveals = document.querySelectorAll(".reveal");
+      for (let i = 0; i < reveals.length; i++) {
+        let windowHeight = window.innerHeight;
+        let elementTop = reveals[i].getBoundingClientRect().top;
+        let elementVisible = 120;
+        if (elementTop < windowHeight - elementVisible) {
+          reveals[i].classList.add("active");
+        }
+      }
+    }
+    window.addEventListener("scroll", revealOnScroll);
+    revealOnScroll();
+
+    // Floating flowers animation
+    const floatingContainer = document.querySelector(".floating-container");
+
+    function createHeart() {
+      const heart = document.createElement("div");
+      heart.classList.add("heart");
+      heart.innerHTML = "💐";
+      floatingContainer.appendChild(heart);
+
+      // Random position and size
+      heart.style.left = Math.random() * 100 + "vw";
+      heart.style.fontSize = (Math.random() * 20 + 15) + "px";
+      heart.style.animationDuration = (Math.random() * 5 + 6) + "s";
+
+      // Remove after animation
+      setTimeout(() => {
+        heart.remove();
+      }, 9000);
+    }
+
+    setInterval(createHeart, 800);
+  </script>
+  <!-- ===== JAVASCRIPT END ===== -->
+</body>
+</html>
